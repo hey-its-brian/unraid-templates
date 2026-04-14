@@ -3,7 +3,7 @@
   <Name>couchdb-livesync</Name>
   <Repository>heyitsbrian/couchdb-livesync:3.3.3</Repository>
   <Registry>https://hub.docker.com/r/heyitsbrian/couchdb-livesync</Registry>
-  <GitHub>https://github.com/hey-its-brian/unraid-templates</GitHub>
+  <GitHub>https://github.com/hey-its-brian/couchdb-obsidian-livesync</GitHub>
   <Network>bridge</Network>
   <Privileged>false</Privileged>
   <Support>https://github.com/hey-its-brian/unraid-templates/issues</Support>
