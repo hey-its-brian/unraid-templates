@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>couchdb-livesync</Name>
+  <Repository>heyitsbrian/couchdb-livesync:3.3.3</Repository>
+  <Registry>https://hub.docker.com/r/heyitsbrian/couchdb-livesync</Registry>
+  <GitHub>https://github.com/hey-its-brian/unraid-templates</GitHub>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/hey-its-brian/unraid-templates/issues</Support>
+  <Project>https://github.com/vrtmrz/obsidian-livesync</Project>
+  <Overview>
+    CouchDB pre-configured for Obsidian Self-Hosted LiveSync. On first boot,
+    all required configuration is applied automatically -- no manual steps in
+    the CouchDB UI needed. Based on the official couchdb:3.3.3 image with
+    LiveSync-specific settings baked in.
+  </Overview>
+  <Category>Tools: Network:Other</Category>
+  <WebUI>http://[IP]:[PORT:5984]/_utils</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/hey-its-brian/unraid-templates/main/couchdb-livesync.xml</TemplateURL>
+  <Icon>https://couchdb.apache.org/image/couch@2x.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <DateInstalled></DateInstalled>
+  <DonateText></DonateText>
+  <DonateLink></DonateLink>
+  <Requires></Requires>
+
+  <!-- Credentials -->
+  <Config
+    Name="CouchDB Admin Username"
+    Target="COUCHDB_USER"
+    Default="obsidian_user"
+    Mode=""
+    Description="CouchDB admin username. Used by LiveSync to connect."
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="false"/>
+
+  <Config
+    Name="CouchDB Admin Password"
+    Target="COUCHDB_PASSWORD"
+    Default=""
+    Mode=""
+    Description="CouchDB admin password. Use something strong."
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="true"/>
+
+  <Config
+    Name="Database Name"
+    Target="COUCHDB_DB_NAME"
+    Default="obsidiandb"
+    Mode=""
+    Description="Name of the Obsidian vault database to create. For multiple users, use separate names like obsidiandb_brian."
+    Type="Variable"
+    Display="always"
+    Required="true"
+    Mask="false"/>
+
+  <!-- Timezone / Permissions -->
+  <Config
+    Name="Timezone"
+    Target="TZ"
+    Default="America/New_York"
+    Mode=""
+    Description="Container timezone."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false"/>
+
+  <Config
+    Name="PUID"
+    Target="PUID"
+    Default="99"
+    Mode=""
+    Description="User ID for file permissions (99 = nobody on Unraid)."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false"/>
+
+  <Config
+    Name="PGID"
+    Target="PGID"
+    Default="100"
+    Mode=""
+    Description="Group ID for file permissions (100 = users on Unraid)."
+    Type="Variable"
+    Display="advanced"
+    Required="false"
+    Mask="false"/>
+
+  <!-- Paths -->
+  <Config
+    Name="Data Path"
+    Target="/opt/couchdb/data"
+    Default="/mnt/user/appdata/couchdb-livesync/data"
+    Mode="rw"
+    Description="Where CouchDB stores your vault data."
+    Type="Path"
+    Display="always"
+    Required="true"
+    Mask="false"/>
+
+  <Config
+    Name="Config Path"
+    Target="/opt/couchdb/etc/local.d"
+    Default="/mnt/user/appdata/couchdb-livesync/etc/local.d"
+    Mode="rw"
+    Description="CouchDB local config directory."
+    Type="Path"
+    Display="advanced"
+    Required="true"
+    Mask="false"/>
+
+  <!-- Port -->
+  <Config
+    Name="WebUI Port"
+    Target="5984"
+    Default="5984"
+    Mode="tcp"
+    Description="CouchDB HTTP port. Used by LiveSync and the admin UI."
+    Type="Port"
+    Display="always"
+    Required="true"
+    Mask="false"/>
+
+</Container>
